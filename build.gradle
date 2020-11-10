@@ -130,7 +130,9 @@ dependencies {
     api 'com.github.radixdlt:jackson-databind:feature~strict-property-ordering-downgraded-version-SNAPSHOT'
 
     api 'com.fasterxml.jackson.core:jackson-core:2.11.3'
+    api 'com.fasterxml.jackson.dataformat:jackson-dataformat-avro:2.11.3'
     api 'com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.11.3'
+    api 'com.fasterxml.jackson.dataformat:jackson-dataformat-protobuf:2.11.3'
     api('com.fasterxml.jackson.datatype:jackson-datatype-json-org:2.11.3') {
         // Use our JSON lib
         exclude group: 'org.json', module: 'json'
