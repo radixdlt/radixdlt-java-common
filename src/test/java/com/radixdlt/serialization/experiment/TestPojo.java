@@ -2,13 +2,11 @@ package com.radixdlt.serialization.experiment;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-//@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 public class TestPojo {
 	private final int intProperty;
 	private final long longProperty;

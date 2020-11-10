@@ -2,7 +2,6 @@ package com.radixdlt.serialization.experiment;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.apache.avro.reflect.Stringable;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -59,7 +58,12 @@ public class TestAtom {
 			@JsonProperty("aid") AID aid,
 			@JsonProperty("witness") HashCode witness
 	) {
-		this(Tuple.asMap(metaData), perGroupMetadata.stream().map(Wrapper::asMap).collect(toList()), Tuple.asMap(signatures), instructions, aid, witness);
+		this(Tuple.asMap(metaData),
+				perGroupMetadata.stream().map(Wrapper::asMap).collect(toList()),
+				Tuple.asMap(signatures),
+				instructions,
+				aid,
+				witness);
 	}
 
 	public static TestAtom min() {
@@ -231,10 +235,7 @@ public class TestAtom {
 				return false;
 			}
 			ECDSASignature that = (ECDSASignature) o;
-			return version == that.version &&
-					serializer.equals(that.serializer) &&
-					r.equals(that.r) &&
-					s.equals(that.s);
+			return r.equals(that.r) && s.equals(that.s);
 		}
 
 		@Override
@@ -243,7 +244,6 @@ public class TestAtom {
 		}
 	}
 
-	//@Stringable
 	public static class EUID {
 		private final int high;
 		private final int midHigh;
@@ -251,7 +251,10 @@ public class TestAtom {
 		private final int low;
 
 		public EUID(String value) {
-			high = midHigh = midLow = low = 0;
+			high = 0;
+			midHigh = 0;
+			midLow = 0;
+			low = 0;
 		}
 
 		@JsonCreator
@@ -310,10 +313,10 @@ public class TestAtom {
 			}
 
 			EUID euid = (EUID) o;
-			return high == euid.high &&
-					midHigh == euid.midHigh &&
-					midLow == euid.midLow &&
-					low == euid.low;
+			return high == euid.high
+					&& midHigh == euid.midHigh
+					&& midLow == euid.midLow
+					&& low == euid.low;
 		}
 
 		@Override
